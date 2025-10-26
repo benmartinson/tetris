@@ -1,6 +1,6 @@
 mod map;
 mod map_builder;
-// mod components;
+mod components;
 mod systems;
 
 mod prelude {
@@ -9,10 +9,10 @@ mod prelude {
     pub use legion::world::SubWorld;
     pub use legion::systems::CommandBuffer;
     pub const SCREEN_WIDTH: i32 = 40;
-    pub const SCREEN_HEIGHT: i32 = 30;
+    pub const SCREEN_HEIGHT: i32 = 25;
     pub use crate::map::*;
     pub use crate::map_builder::*;
-    // pub use crate::components::*;
+    pub use crate::components::*;
     // pub use crate::spawner::*;
     pub use crate::systems::*;
     // pub use crate::turn_state::*;
