@@ -13,6 +13,7 @@ pub fn player_input(
     let delta = match key {
       VirtualKeyCode::Left => Point::new(-1, 0),
       VirtualKeyCode::Right => Point::new(1, 0),
+      VirtualKeyCode::Down => Point::new(0, 1),
       _ => Point::new(0, 0),
     };
     movers
