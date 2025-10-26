@@ -13,7 +13,6 @@ pub fn entity_render(
     .iter(ecs)
     .for_each(|(render, block)| {
       for pt in block.points.iter() {
-        println!("pt rendering x={}y={}", pt.x, pt.y);
         draw_batch.set(
           *pt,
           render.color,

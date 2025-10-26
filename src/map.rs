@@ -23,17 +23,13 @@ impl Map {
     }
   }
 
-  pub fn is_tile_open(&self, point: Point) -> bool {
-    self.tiles[map_idx(point.x, point.y)] == TileType::Floor
+  pub fn are_tiles_in_bounds(&self, points: Vec<Point>) -> bool {
+    for point in points.iter() {
+      if self.tiles[map_idx(point.x, point.y)] == TileType::Wall {
+        return false
+      }
+    }
+    true
   }
-
-  // pub fn try_idx(&self, point: Point) -> Option<usize> {
-  //   if !self.in_bounds(point) {
-  //     None
-  //   } else {
-  //     Some(map_idx(point.x, point.y))
-  //   }
-  // }
-
   
 }

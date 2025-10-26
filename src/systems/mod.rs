@@ -1,14 +1,18 @@
 use crate::prelude::*;
-// mod player_input;
+mod player_input;
 mod map_render;
 mod entity_render;
 mod movement;
 mod generate_block;
+mod gravity;
 
 pub fn build_input_scheduler() -> Schedule {
   Schedule::builder()
-    // .add_system(player_input::player_input_system())
-    // .add_system(movement::movement_system())
+    .add_system(gravity::gravity_system())
+    .flush()
+    .add_system(player_input::player_input_system())
+    .flush()
+    .add_system(movement::movement_system())
     .flush()
     .add_system(map_render::map_render_system())
     .add_system(generate_block::generate_block_system())

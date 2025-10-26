@@ -16,6 +16,7 @@ mod prelude {
     // pub use crate::spawner::*;
     pub use crate::systems::*;
     // pub use crate::turn_state::*;
+    pub const FRAME_DURATION : f32 = 500.0;
 }
 
 use prelude::*;
@@ -28,6 +29,7 @@ struct State {
     ecs: World,
     resources: Resources,
     input_systems: Schedule,
+    frame_time: f32,
 }
 
 impl State {
@@ -43,6 +45,7 @@ impl State {
             ecs,
             resources,
             input_systems: build_input_scheduler(),
+            frame_time: 0.0,
         }
     }
 
@@ -58,8 +61,13 @@ impl GameState for State {
         ctx.set_active_console(1);
         ctx.cls();
 
+        self.frame_time += ctx.frame_time_ms;
+        if self.frame_time > FRAME_DURATION {
+            self.frame_time = 0.0;
+        }
         self.resources.insert(ctx.key);
-        // let current_state = self.resources.get::<TurnState>().unwrap().clone();
+
+        self.resources.insert(self.frame_time);
         self.input_systems.execute(
                 &mut self.ecs,
                 &mut self.resources
