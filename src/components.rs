@@ -21,5 +21,6 @@ pub struct Square;
 #[derive(Clone, Debug, PartialEq)]
 pub struct WantsToMove {
   pub entity: Entity,
-  pub block: Block
+  pub block: Block,
+  pub delta: Point
 }

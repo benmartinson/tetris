@@ -6,6 +6,7 @@ pub fn player_input(
   ecs: &mut SubWorld,
   commands: &mut CommandBuffer,
   #[resource] key: &Option<VirtualKeyCode>,
+  #[resource] map: &Map
 ) {
   let mut movers = <(Entity, &Block)>::query().filter(component::<IsMoving>());
 
@@ -19,9 +20,8 @@ pub fn player_input(
     movers
       .iter(ecs)
       .for_each(|(entity, block)| {
-        let mut new_block = block.clone();
-        new_block.points.iter_mut().for_each(|pt| *pt += delta);
-        commands.push(((), WantsToMove { entity: *entity, block: new_block }));
+        // let mut new_block = map.try_move(&block.points, delta);
+        commands.push(((), WantsToMove { entity: *entity, block: block.clone(), delta }));
       }
     );
   }

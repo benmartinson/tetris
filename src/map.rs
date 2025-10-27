@@ -29,9 +29,7 @@ impl Map {
     })
   }
 
-  pub fn try_move(&self, points: &[Point], delta: Point) -> bool {
-    let new_points: Vec<Point> =
-        points.iter().map(|&pt| pt + delta).collect();
-    self.are_tiles_in_bounds(&new_points)
+  pub fn try_move(&self, points: &[Point], delta: Point) -> Vec<Point> {
+    points.iter().map(|&pt| pt + delta).collect()
   }
 }

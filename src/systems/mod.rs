@@ -5,11 +5,9 @@ mod entity_render;
 mod movement;
 mod generate_block;
 mod gravity;
-mod collision;
 
 pub fn build_input_scheduler() -> Schedule {
   Schedule::builder()
-    .add_system(collision::collision_system())
     .add_system(gravity::gravity_system())
     .flush()
     .add_system(player_input::player_input_system())
