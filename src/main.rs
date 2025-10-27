@@ -13,10 +13,8 @@ mod prelude {
     pub use crate::map::*;
     pub use crate::map_builder::*;
     pub use crate::components::*;
-    // pub use crate::spawner::*;
     pub use crate::systems::*;
-    // pub use crate::turn_state::*;
-    pub const FRAME_DURATION : f32 = 500.0;
+    pub const FRAME_DURATION : f32 = 300.0;
 }
 
 use prelude::*;
