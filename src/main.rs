@@ -15,6 +15,8 @@ mod prelude {
     pub use crate::components::*;
     pub use crate::systems::*;
     pub const FRAME_DURATION : f32 = 300.0;
+    pub const FLOOR_MIN_X: i32 = 10;
+    pub const FLOOR_MAX_X: i32 = 30;
 }
 
 use prelude::*;

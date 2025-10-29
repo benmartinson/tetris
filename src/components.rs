@@ -16,6 +16,9 @@ pub struct Block {
 pub struct IsMoving;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
+pub struct IsSettling;
+
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Square;
 
 #[derive(Clone, Debug, PartialEq)]

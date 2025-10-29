@@ -46,4 +46,15 @@ impl Map {
         Point::new(pivot.x + new_x, pivot.y + new_y)
     }).collect()
   }
+
+  pub fn get_completed_lines(&self, lines_to_check: &[i32], points: &[Point]) -> Vec<i32> {
+    lines_to_check
+      .iter()
+      .cloned()
+      .filter(|&y| {
+          (FLOOR_MIN_X..FLOOR_MAX_X)
+              .all(|x| points.contains(&Point::new(x, y)))
+      })
+      .collect()
+  }
 }

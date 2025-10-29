@@ -6,16 +6,26 @@ use crate::prelude::*;
 pub fn generate_block(ecs: &SubWorld, commands: &mut CommandBuffer) {
   let mut movers = <&Block>::query().filter(component::<IsMoving>());
   let mover_count = movers.iter(ecs).count();
+
   if mover_count == 0 {
     let mut rng = RandomNumberGenerator::new();
-    let (block, color) = match rng.range(0, 5) {
-      0 => spawn_square_block(),
-      1 => spawn_snake_block(),
-      2 => spawn_es_block(),
-      3 => spawn_el_block(),
-      4 => spawn_tee_block(),
-      _ => unreachable!(), 
+    let test = true;
+    let (block, color) = if test {
+      match rng.range(0, 1) {
+        0 => spawn_test_snake(),
+        _ => unreachable!(), 
+      }
+    } else {
+      match rng.range(0, 5) {
+        0 => spawn_square_block(),
+        1 => spawn_snake_block(),
+        2 => spawn_es_block(),
+        3 => spawn_el_block(),
+        4 => spawn_tee_block(),
+        _ => unreachable!(), 
+      }
     };
+    
     commands.push(
       (
         Square,
@@ -31,6 +41,25 @@ pub fn generate_block(ecs: &SubWorld, commands: &mut CommandBuffer) {
     );
   } 
   
+}
+
+pub fn spawn_test_snake() -> (Vec<Point>, (u8, u8, u8)) {
+  let mut points = vec![];
+  for x in FLOOR_MIN_X..FLOOR_MAX_X {
+    points.push(Point::new(x, 2));
+  }
+
+  for x in FLOOR_MIN_X+1..FLOOR_MAX_X {
+    points.push(Point::new(x, 3));
+  }
+  for x in FLOOR_MIN_X..FLOOR_MAX_X {
+    points.push(Point::new(x, 4));
+  }
+  for x in FLOOR_MIN_X+1..FLOOR_MAX_X {
+    points.push(Point::new(x, 5));
+  }
+
+  (points, RED)
 }
 
 pub fn spawn_square_block() -> (Vec<Point>, (u8, u8, u8)) {

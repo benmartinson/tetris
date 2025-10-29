@@ -20,6 +20,8 @@ pub fn movement(
   // Stop if block hits bottom
   if !is_move_in_boundes && is_moving_down {
     commands.remove_component::<IsMoving>(*moving_entity);
+    commands.add_component(*moving_entity, IsSettling);
+    commands.remove(*message_entity);
     return;
   }
 
@@ -38,6 +40,8 @@ pub fn movement(
 
   if is_collision && is_moving_down {
     commands.remove_component::<IsMoving>(*moving_entity);
+    commands.add_component(*moving_entity, IsSettling);
+    commands.remove(*message_entity);
     return;
   }
 
