@@ -5,12 +5,15 @@ mod entity_render;
 mod movement;
 mod generate_block;
 mod gravity;
+mod rotation;
 
 pub fn build_input_scheduler() -> Schedule {
   Schedule::builder()
     .add_system(gravity::gravity_system())
     .flush()
     .add_system(player_input::player_input_system())
+    .flush()
+    .add_system(rotation::rotation_system())
     .flush()
     .add_system(movement::movement_system())
     .flush()

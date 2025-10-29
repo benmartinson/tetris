@@ -32,4 +32,18 @@ impl Map {
   pub fn try_move(&self, points: &[Point], delta: Point) -> Vec<Point> {
     points.iter().map(|&pt| pt + delta).collect()
   }
+
+  pub fn try_rotation(&self, points: &[Point]) -> Vec<Point> {
+    let pivot = points[1];
+    
+    points.iter().map(|&pt| {
+        let rel_x = pt.x - pivot.x;
+        let rel_y = pt.y - pivot.y;
+
+        let new_x =  rel_y;
+        let new_y = -rel_x;
+
+        Point::new(pivot.x + new_x, pivot.y + new_y)
+    }).collect()
+  }
 }

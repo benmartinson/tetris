@@ -24,3 +24,9 @@ pub struct WantsToMove {
   pub block: Block,
   pub delta: Point
 }
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct WantsToRotate {
+  pub entity: Entity,
+  pub block: Block,
+}
