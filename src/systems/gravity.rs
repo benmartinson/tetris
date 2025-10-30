@@ -5,7 +5,7 @@ use crate::prelude::*;
 #[read_component(IsMoving)]
 pub fn gravity(
   ecs: &mut SubWorld, 
-  #[resource] frame_time: &mut f32,
+  #[resource] frame_time: &f32,
   #[resource] map: &Map,
   commands: &mut CommandBuffer,
 ) {

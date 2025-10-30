@@ -5,9 +5,11 @@ use crate::prelude::*;
 #[read_component(IsMoving)]
 pub fn generate_block(ecs: &SubWorld, commands: &mut CommandBuffer) {
   let mut movers = <&Block>::query().filter(component::<IsMoving>());
+  let lines_collapsing = <(Entity, &IsCollapsing)>::query();
   let mover_count = movers.iter(ecs).count();
+  let lines_collapsing_count = movers.iter(ecs).count();
 
-  if mover_count == 0 {
+  if mover_count == 0 && lines_collapsing_count == 0 {
     let mut rng = RandomNumberGenerator::new();
     let test = true;
     let (block, color) = if test {

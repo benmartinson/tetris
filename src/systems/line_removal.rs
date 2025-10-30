@@ -56,4 +56,8 @@ pub fn line_removal(
           commands.add_component(*entity, Block {points: new_points});
         }
       });
+
+    lines_completed.iter().for_each(|completed_line| {
+      commands.push(((), IsCollapsing { y: *completed_line }));
+    })
 }
